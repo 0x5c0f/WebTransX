@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>网页翻译助手设置</title>
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --success: #10b981;
+      --danger: #ef4444;
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    }
+
+    body {
+      width: 360px;
+      background-color: var(--bg);
+      color: var(--text);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .container {
+      padding: 14px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    .title {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .version-tag {
+      font-size: 10px;
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 6px;
+      border-radius: 10px;
+      font-weight: 600;
+    }
+
+    /* Page Conflict Detection Alert */
+    .status-alert {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #166534;
+      padding: 8px 10px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .status-alert.warn {
+      background: #fffbeb;
+      border-color: #fef3c7;
+      color: #92400e;
+    }
+
+    /* Action Buttons */
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: var(--radius);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #f1f5f9;
+    }
+
+    /* Tabs */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 12px;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 6px 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Form Section */
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 12px;
+      color: var(--text);
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+
+    /* Switch Row */
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .switch-label {
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 34px;
+      height: 18px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #cbd5e1;
+      transition: .2s;
+      border-radius: 18px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 14px;
+      width: 14px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      transition: .2s;
+      border-radius: 50%;
+    }
+
+    input:checked + .slider {
+      background-color: var(--primary);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(16px);
+    }
+
+    /* Radio Engine Options */
+    .radio-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 6px;
+      cursor: pointer;
+      transition: all 0.12s;
+      background: #ffffff;
+    }
+
+    .radio-card:hover {
+      border-color: #cbd5e1;
+    }
+
+    .radio-card.selected {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .radio-card input {
+      margin-top: 2px;
+    }
+
+    .radio-title {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .radio-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    /* Test Connection Result Box */
+    .test-box {
+      margin-top: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      display: none;
+    }
+    .test-box.success {
+      display: block;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
+    .test-box.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+
+    /* Save bar */
+    .save-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+
+    .tip-msg {
+      font-size: 11px;
+      color: var(--success);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .tip-msg.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="logo-box">
+        <div class="logo-icon">译</div>
+        <div>
+          <div class="title">网页翻译助手</div>
+        </div>
+      </div>
+      <span class="version-tag">v1.0.0</span>
+    </div>
+
+    <!-- Host Detection Notice -->
+    <div id="host-status-alert" class="status-alert" style="display: none;">
+      <span id="host-status-icon">🛡️</span>
+      <span id="host-status-text">检测到当前页面已集成 translate.js，插件将自动启用无缝复用模式。</span>
+    </div>
+
+    <!-- Quick Page Actions -->
+    <div class="btn-group">
+      <button id="btn-translate-page" class="btn btn-primary">
+        <span>🌐 翻译当前页</span>
+      </button>
+      <button id="btn-restore-page" class="btn btn-secondary">
+        <span>↺ 恢复原网页</span>
+      </button>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="tab-general">常规设置</button>
+      <button class="tab-btn" data-tab="tab-engine">翻译后端服务</button>
+    </div>
+
+    <!-- TAB 1: General Settings -->
+    <div id="tab-general" class="tab-pane">
+      <div class="section-card">
+        <div class="form-group">
+          <label class="form-label" for="select-target-lang">目标语言</label>
+          <select id="select-target-lang" class="form-control">
+            <option value="chinese_simplified">简体中文 (Chinese Simplified)</option>
+            <option value="chinese_traditional">繁體中文 (Chinese Traditional)</option>
+            <option value="english">英语 (English)</option>
+            <option value="japanese">日语 (Japanese)</option>
+            <option value="korean">韩语 (Korean)</option>
+            <option value="french">法语 (French)</option>
+            <option value="german">德语 (German)</option>
+            <option value="spanish">西班牙语 (Spanish)</option>
+            <option value="russian">俄语 (Russian)</option>
+          </select>
+        </div>
+
+        <div class="switch-row" style="margin-top: 10px;">
+          <span class="switch-label">开启划词浮层翻译</span>
+          <label class="switch">
+            <input type="checkbox" id="check-enable-selection" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="switch-row" style="margin-top: 8px;">
+          <span class="switch-label">打开外语网页自动翻译</span>
+          <label class="switch">
+            <input type="checkbox" id="check-auto-translate">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Engine Settings -->
+    <div id="tab-engine" class="tab-pane" style="display: none;">
+      <!-- Service Mode Radio Cards -->
+      <div class="form-group">
+        <label class="form-label">翻译服务引擎模式</label>
+        
+        <label class="radio-card" data-mode="default">
+          <input type="radio" name="serviceMode" value="default" checked>
+          <div>
+            <div class="radio-title">⚡ 默认高速引擎 (推荐)</div>
+            <div class="radio-desc">开箱即用，走官方边缘节点，无需额外配置</div>
+          </div>
+        </label>
+
+        <label class="radio-card" data-mode="custom_api">
+          <input type="radio" name="serviceMode" value="custom_api">
+          <div>
+            <div class="radio-title">🏢 自建私有化后端服务</div>
+            <div class="radio-desc">连接公司自建或专有的 translate-service</div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Subform: Custom API Host -->
+      <div id="subform-custom-api" class="section-card" style="display: none;">
+        <div class="form-group">
+          <label class="form-label">后端接口地址 (Host)</label>
+          <input type="text" id="input-custom-api-host" class="form-control" placeholder="http://127.0.0.1:8080/ 或 https://api.mycorp.com/">
+        </div>
+        <button type="button" id="btn-test-connection" class="btn btn-secondary" style="width: 100%; margin-top: 8px;">
+          <span>⚡ 测试后端连通性</span>
+        </button>
+        <div id="test-connection-result" class="test-box"></div>
+      </div>
+    </div>
+
+    <!-- Bottom Save Area -->
+    <div class="save-bar">
+      <span id="save-tip" class="tip-msg">✓ 设置已保存生效</span>
+      <button id="btn-save-settings" class="btn btn-primary" style="flex: 0 0 110px;">
+        保存设置
+      </button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

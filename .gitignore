@@ -1,0 +1,47 @@
+# 依赖目录
+node_modules/
+package-lock.json
+
+# 构建输出
+dist/
+build/
+
+# 日志文件
+*.log
+logs/
+
+# 操作系统生成的文件
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# IDE 配置文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Chrome 扩展特定文件
+*.crx
+*.pem
+
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+*.bak
+
+# 测试报告
+coverage/
+.nyc_output/
+
+# 其他
+*.backup
+*.orig
