@@ -38,6 +38,10 @@ WebTransX/
 ├── popup/
 │   ├── popup.html           # 扩展弹窗界面 (支持常规设置与后端配置)
 │   └── popup.js             # 弹窗交互与存储逻辑
+├── docs/
+│   └── images/              # 界面截图
+│       ├── popup-settings.png   # 常规设置页面
+│       └── popup-backend.png    # 翻译后端服务页面
 ├── icons/                   # 16/48/128 分辨率图标
 ├── LICENSE                  # MIT 许可证
 ├── .gitignore               # Git 忽略规则
@@ -61,6 +65,21 @@ WebTransX/
 2. 切换到 **"翻译后端服务"** 标签页：
    - 如果保持默认：默认选择 **"默认高速引擎"**，开箱即用。
    - 如果有企业自建服务：选择 **"自建私有化后端服务"**，输入您的后端地址 (例如 `http://127.0.0.1:8080/`)，点击 **"测试后端连通性"** 并保存。
+
+---
+
+## 📸 界面预览
+
+<table>
+  <tr>
+    <td align="center"><b>常规设置</b></td>
+    <td align="center"><b>翻译后端服务</b></td>
+  </tr>
+  <tr>
+    <td><img src="docs/images/popup-settings.png" width="300"></td>
+    <td><img src="docs/images/popup-backend.png" width="300"></td>
+  </tr>
+</table>
 
 ---
 
